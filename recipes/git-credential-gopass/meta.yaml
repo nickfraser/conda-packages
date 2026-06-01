@@ -1,0 +1,28 @@
+{% set name = "git-credential-gopass" %}
+{% set version = "1.16.1" %}
+
+package:
+  name: {{ name|lower }}
+  version: {{ version }}
+
+source:
+  url: https://github.com/gopasspw/git-credential-gopass/archive/refs/tags/v{{ version }}.tar.gz
+  sha256: 8382b98e56b4547232cc5ea8967eb2a7497a9821a50499d215dafc2f530ba32e
+
+build:
+  number: 0
+
+requirements:
+  build:
+    - go >=1.24.1
+
+test:
+  commands:
+    - test -x ${PREFIX}/bin/git-credential-gopass
+
+about:
+  home: https://github.com/gopasspw/git-credential-gopass
+  summary: Gopass git credentials helper
+  license: MIT
+  license_file: LICENSE
+  dev_url: https://github.com/gopasspw/git-credential-gopass
