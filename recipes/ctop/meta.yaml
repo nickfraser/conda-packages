@@ -1,0 +1,28 @@
+{% set name = "ctop" %}
+{% set version = "0.7.7" %}
+
+package:
+  name: {{ name|lower }}
+  version: {{ version }}
+
+source:
+  url: https://github.com/bcicen/ctop/archive/refs/tags/v{{ version }}.tar.gz
+  sha256: 0db439f2030af73ad5345884b08a33a762c3b41b30604223dd0ebddde72d2741
+
+build:
+  number: 0
+
+requirements:
+  build:
+    - go >=1.18
+
+test:
+  commands:
+    - ctop -v
+
+about:
+  home: https://ctop.sh
+  summary: Top-like interface for container metrics
+  license: MIT
+  license_file: LICENSE
+  dev_url: https://github.com/bcicen/ctop
