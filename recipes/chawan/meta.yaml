@@ -1,0 +1,36 @@
+{% set name = "chawan" %}
+{% set version = "0.4.1" %}
+
+package:
+  name: {{ name|lower }}
+  version: {{ version }}
+
+source:
+  url: https://git.sr.ht/~bptato/chawan/archive/v{{ version }}.tar.gz
+  sha256: cf09e0205f8db28cc916c44f2ac1def6392efc9d66f3c88dc9aae413079ebb2c
+
+build:
+  number: 0
+
+requirements:
+  build:
+    - {{ compiler('c') }}
+    - make
+    - nim >=2.0.0
+    - pkg-config
+  host:
+    - brotli
+    - libssh2
+    - openssl
+    - zlib
+
+test:
+  commands:
+    - test -x ${PREFIX}/bin/cha
+
+about:
+  home: https://chawan.net/
+  summary: A text-mode web browser and pager for Unix-like systems
+  license: Unlicense
+  license_file: UNLICENSE
+  dev_url: https://git.sr.ht/~bptato/chawan
