@@ -16,6 +16,7 @@ Examples:
 
 - `recipes/ctop/`
 - `recipes/git-credential-gopass/`
+- `recipes/screen/`
 
 Typical files:
 
@@ -29,6 +30,7 @@ Build a recipe with `conda-build` from the repository root:
 ```bash
 conda-build recipes/ctop
 conda-build recipes/git-credential-gopass
+conda-build recipes/screen
 ```
 
 Built packages are written to your local conda build cache, typically under a path like:
@@ -47,12 +49,15 @@ or, for a Miniforge-style install:
 
 - `ctop`: Top-like interface for container metrics
 - `git-credential-gopass`: Git credential helper backed by `gopass`
+- `chawan`: Text-mode web browser; current package includes `cha` and the required runtime helper tree, but omits `mancha` and man pages for now
+- `screen`: GNU Screen terminal multiplexer
 
 ## Notes
 
 - `conda-forge` should remain the primary dependency source.
 - These recipes are intended to be small and pragmatic.
 - Runtime integration for some packages may still depend on tools outside conda. For example, `git-credential-gopass` still requires a working `gopass` setup.
+- `screen` currently builds and passes detached-session smoke tests without packaging setuid installation bits.
 
 ## Future Work
 
