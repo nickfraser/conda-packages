@@ -50,7 +50,7 @@ or, for a Miniforge-style install:
 - `ctop`: Top-like interface for container metrics
 - `git-credential-gopass`: Git credential helper backed by `gopass`
 - `chawan`: Text-mode web browser; current package includes `cha` and the required runtime helper tree, but omits `mancha` and man pages for now
-- `screen`: GNU Screen terminal multiplexer
+- `screen`: GNU Screen terminal multiplexer; current package installs the runtime binary and encoding data, but omits man and info docs
 
 ## Notes
 
@@ -58,6 +58,7 @@ or, for a Miniforge-style install:
 - These recipes are intended to be small and pragmatic.
 - Runtime integration for some packages may still depend on tools outside conda. For example, `git-credential-gopass` still requires a working `gopass` setup.
 - `screen` currently builds and passes detached-session smoke tests without packaging setuid installation bits.
+- `screen` intentionally skips upstream doc installation, so `man screen` and `info screen` are not provided by this package.
 
 ## Future Work
 

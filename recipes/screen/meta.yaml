@@ -10,19 +10,20 @@ source:
   sha256: 2dae36f4db379ffcd14b691596ba6ec18ac3a9e22bc47ac239789ab58409869d
 
 build:
-  number: 0
+  number: 1
 
 requirements:
   build:
     - {{ compiler('c') }}
     - make
-    - texinfo
   host:
+    - libxcrypt
     - ncurses
 
 test:
   commands:
     - screen -v | grep 'Screen version 5.0.1'
+    - test -d ${PREFIX}/share/screen/utf8encodings
 
 about:
   home: https://www.gnu.org/software/screen/
