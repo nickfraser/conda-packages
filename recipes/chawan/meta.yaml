@@ -27,6 +27,8 @@ requirements:
 test:
   commands:
     - test -x ${PREFIX}/bin/cha
+    - test -f ${PREFIX}/libexec/chawan/init.jsb
+    - test -x ${PREFIX}/libexec/chawan/cgi-bin/http
 
 about:
   home: https://chawan.net/
