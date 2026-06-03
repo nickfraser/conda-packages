@@ -23,9 +23,30 @@ Typical files:
 - `meta.yaml`: package metadata, source, dependencies, tests
 - `build.sh`: Linux build/install script
 
+## Build Environment Setup
+
+Install Miniforge first if you do not already have a conda distribution available:
+
+- Miniforge releases and install instructions: <https://github.com/conda-forge/miniforge>
+
+After Miniforge is installed, create a dedicated build environment and install `conda-build` there:
+
+```bash
+conda create -n cb -c conda-forge conda-build
+conda activate cb
+```
+
+All build and installation commands below assume this build environment is active.
+
 ## Local Build Workflow
 
-Build a recipe with `conda-build` from the repository root:
+Build a recipe from the repository root with:
+
+```bash
+conda-build recipes/<package>
+```
+
+Examples:
 
 ```bash
 conda-build recipes/ctop
@@ -33,7 +54,7 @@ conda-build recipes/git-credential-gopass
 conda-build recipes/screen
 ```
 
-Built packages are written to your local conda build cache, typically under a path like:
+`conda-build` writes the resulting package to your local build cache, typically under a path like:
 
 ```text
 $CONDA_PREFIX/envs/<build-env>/conda-bld/linux-64/
@@ -44,6 +65,40 @@ or, for a Miniforge-style install:
 ```text
 ~/miniforge3/envs/<build-env>/conda-bld/linux-64/
 ```
+
+In this repository's current setup, built packages have been written under paths like:
+
+```text
+~/.local/miniforge3/envs/cb/conda-bld/linux-64/
+```
+
+## Installing Built Packages
+
+Install built packages from the local `conda-bld` directory as a channel so that conda can resolve runtime dependencies correctly:
+
+```bash
+conda create -n test-env \
+  -c "file://$CONDA_PREFIX/envs/cb/conda-bld" \
+  -c conda-forge \
+  --override-channels \
+  screen
+```
+
+You can also install into an existing environment:
+
+```bash
+conda install -n my-env \
+  -c "file://$CONDA_PREFIX/envs/cb/conda-bld" \
+  -c conda-forge \
+  --override-channels \
+  screen
+```
+
+If your Miniforge installation lives somewhere else, replace the channel path with the actual location of its `conda-bld` directory.
+
+Avoid installing a built package by pointing `conda install` directly at the `.tar.bz2` artifact. Installing from the local channel is more reliable because it allows conda to solve and install the package's dependencies.
+
+After installation, run a quick smoke test for the package you built when appropriate.
 
 ## Current Packages
 
