@@ -78,7 +78,7 @@ Install built packages from the local `conda-bld` directory as a channel so that
 
 ```bash
 conda create -n test-env \
-  -c "file://$CONDA_PREFIX/envs/cb/conda-bld" \
+  -c "file://$CONDA_PREFIX/conda-bld" \
   -c conda-forge \
   --override-channels \
   screen
@@ -88,13 +88,13 @@ You can also install into an existing environment:
 
 ```bash
 conda install -n my-env \
-  -c "file://$CONDA_PREFIX/envs/cb/conda-bld" \
+  -c "file://$CONDA_PREFIX/conda-bld" \
   -c conda-forge \
   --override-channels \
   screen
 ```
 
-If your Miniforge installation lives somewhere else, replace the channel path with the actual location of its `conda-bld` directory.
+These examples assume the `cb` build environment is active, so `CONDA_PREFIX` points at that environment. If your build environment or Miniforge installation lives somewhere else, replace the channel path with the actual location of its `conda-bld` directory.
 
 Avoid installing a built package by pointing `conda install` directly at the `.tar.bz2` artifact. Installing from the local channel is more reliable because it allows conda to solve and install the package's dependencies.
 
