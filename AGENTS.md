@@ -33,6 +33,7 @@ conda create -n test-env \
 
 - Keep recipes small and pragmatic. Prefer the minimal `meta.yaml`/`build.sh` needed to build and test correctly.
 - `conda-forge` remains the primary dependency source; local recipes are overlays, not a replacement channel.
+- If a requested package already exists on `conda-forge` and the user has not given a reason to package it locally anyway, stop and ask for confirmation before adding a local recipe.
 - If packaging changes without an upstream version change, bump the recipe `build.number`.
 
 ## Package-Specific Gotchas
