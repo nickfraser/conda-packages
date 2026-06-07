@@ -43,15 +43,23 @@ All build and installation commands below assume this build environment is activ
 Build a recipe from the repository root with:
 
 ```bash
-conda-build recipes/<package>
+conda-build -c conda-forge recipes/<package>
 ```
+
+Pass `-c conda-forge` explicitly when building. Some recipes need build dependencies such as `go`, and `conda-build` does not always inherit the channel configuration you used when creating the `cb` environment.
 
 Examples:
 
 ```bash
-conda-build recipes/ctop
-conda-build recipes/git-credential-gopass
-conda-build recipes/screen
+conda-build -c conda-forge recipes/ctop
+conda-build -c conda-forge recipes/git-credential-gopass
+conda-build -c conda-forge recipes/screen
+```
+
+If a recipe ever needs to consume another package you already built locally, add `--use-local`:
+
+```bash
+conda-build --use-local -c conda-forge recipes/<package>
 ```
 
 `conda-build` writes the resulting package to your local build cache, typically under a path like:
