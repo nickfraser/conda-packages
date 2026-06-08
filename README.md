@@ -125,7 +125,8 @@ After installation, run a quick smoke test for the package you built when approp
 
 - `conda-forge` should remain the primary dependency source.
 - These recipes are intended to be small and pragmatic.
-- `opencode` currently builds from source, but it is still a pragmatic recipe: it vendors a `models.dev` API snapshot as a source input and lets `bun install` fetch npm dependencies during the build.
+- `opencode` currently builds from source with vendored `node_modules` and a pinned `models.dev` API snapshot, so the conda recipe itself does not fetch npm dependencies during the build.
+- `opencode` still requires a separate dependency-refresh step when upstream changes: the vendored `node_modules` source artifact must be regenerated from the pinned lockfile before bumping the recipe.
 - `opencode` runtime dependencies are pinned to the Bun-linked shared library ABI used by the built binary, so avoid casually widening those version ranges without re-testing the package in a clean env.
 - Runtime integration for some packages may still depend on tools outside conda. For example, `git-credential-gopass` still requires a working `gopass` setup.
 - `screen` currently builds and passes detached-session smoke tests without packaging setuid installation bits.
