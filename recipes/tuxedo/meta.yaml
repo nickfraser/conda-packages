@@ -1,0 +1,33 @@
+{% set name = "tuxedo" %}
+{% set version = "2026.6.2" %}
+
+package:
+  name: {{ name|lower }}
+  version: {{ version }}
+
+source:
+  url: https://github.com/webstonehq/tuxedo/archive/refs/tags/v{{ version }}.tar.gz
+  sha256: e5c03b7948c7a968ef15bec48fb02a0ce13ac5dbf9ea263ce30a6abdc579a81f
+
+build:
+  number: 0
+
+requirements:
+  build:
+    - {{ compiler('c') }}
+    - rust >=1.85
+
+test:
+  commands:
+    - TUXEDO_NO_UPDATE_CHECK=1 tuxedo --version
+    - TUXEDO_NO_UPDATE_CHECK=1 tuxedo --help
+    - rm -f tuxedo-test.txt
+    - TUXEDO_NO_UPDATE_CHECK=1 TODO_FILE="${PWD}/tuxedo-test.txt" tuxedo add "Buy milk +home @errands"
+    - TUXEDO_NO_UPDATE_CHECK=1 TODO_FILE="${PWD}/tuxedo-test.txt" tuxedo ls | grep "Buy milk"
+
+about:
+  home: https://github.com/webstonehq/tuxedo
+  summary: Fast, keyboard-driven terminal UI for todo.txt
+  license: MIT
+  license_file: LICENSE
+  dev_url: https://github.com/webstonehq/tuxedo

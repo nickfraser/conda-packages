@@ -17,6 +17,7 @@ Examples:
 - `recipes/ctop/`
 - `recipes/git-credential-gopass/`
 - `recipes/screen/`
+- `recipes/tuxedo/`
 
 Typical files:
 
@@ -54,6 +55,7 @@ Examples:
 conda-build -c conda-forge recipes/ctop
 conda-build -c conda-forge recipes/git-credential-gopass
 conda-build -c conda-forge recipes/screen
+conda-build -c conda-forge recipes/tuxedo
 ```
 
 If a recipe ever needs to consume another package you already built locally, add `--use-local`:
@@ -114,6 +116,7 @@ After installation, run a quick smoke test for the package you built when approp
 - `git-credential-gopass`: Git credential helper backed by `gopass`
 - `chawan`: Text-mode web browser; current package includes `cha` and the required runtime helper tree, but omits `mancha` and man pages for now
 - `screen`: GNU Screen terminal multiplexer; current package installs the runtime binary and encoding data, but omits man and info docs
+- `tuxedo`: Fast, keyboard-driven terminal UI for `todo.txt`
 
 ## Notes
 
