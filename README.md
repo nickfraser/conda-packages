@@ -116,7 +116,7 @@ After installation, run a quick smoke test for the package you built when approp
 
 - `ctop`: Top-like interface for container metrics
 - `git-credential-gopass`: Git credential helper backed by `gopass`
-- `opencode`: Open source AI coding agent; current package repackages the upstream `linux-x64-baseline` CLI binary for broader CPU compatibility on `linux-64`
+- `opencode`: Open source AI coding agent; current package builds the CLI from source with Bun and installs the generated JSON schema
 - `chawan`: Text-mode web browser; current package includes `cha` and the required runtime helper tree, but omits `mancha` and man pages for now
 - `screen`: GNU Screen terminal multiplexer; current package installs the runtime binary and encoding data, but omits man and info docs
 - `tuxedo`: Fast, keyboard-driven terminal UI for `todo.txt`
@@ -125,7 +125,8 @@ After installation, run a quick smoke test for the package you built when approp
 
 - `conda-forge` should remain the primary dependency source.
 - These recipes are intended to be small and pragmatic.
-- `opencode` is a deliberate exception to the usual source-build preference here: the current recipe repackages the upstream CLI binary, with conda binary relocation disabled to preserve the original ELF behavior.
+- `opencode` currently builds from source, but it is still a pragmatic recipe: it vendors a `models.dev` API snapshot as a source input and lets `bun install` fetch npm dependencies during the build.
+- `opencode` runtime dependencies are pinned to the Bun-linked shared library ABI used by the built binary, so avoid casually widening those version ranges without re-testing the package in a clean env.
 - Runtime integration for some packages may still depend on tools outside conda. For example, `git-credential-gopass` still requires a working `gopass` setup.
 - `screen` currently builds and passes detached-session smoke tests without packaging setuid installation bits.
 - `screen` intentionally skips upstream doc installation, so `man screen` and `info screen` are not provided by this package.
