@@ -1,0 +1,30 @@
+{% set name = "opencode" %}
+{% set version = "1.16.2" %}
+
+package:
+  name: {{ name|lower }}
+  version: {{ version }}
+
+source:
+  - url: https://registry.npmjs.org/opencode-linux-x64-baseline/-/opencode-linux-x64-baseline-{{ version }}.tgz
+    sha256: ac58886dd0a96752c7688e07c8ff0891655df45207eaa94fdeb8673befb82b69
+  - url: https://raw.githubusercontent.com/anomalyco/opencode/v{{ version }}/LICENSE
+    sha256: 625f0f619133f89bbbb2abe37369613dfa1885eba1e50d02170deb62bb42cb6b
+    fn: LICENSE
+
+build:
+  number: 0
+  binary_relocation: false
+
+test:
+  commands:
+    - test -x ${PREFIX}/bin/opencode
+    - opencode --version
+    - opencode --help
+
+about:
+  home: https://opencode.ai
+  summary: Open source AI coding agent
+  license: MIT
+  license_file: LICENSE
+  dev_url: https://github.com/anomalyco/opencode

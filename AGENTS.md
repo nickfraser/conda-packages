@@ -35,10 +35,12 @@ conda create -n test-env \
 - `conda-forge` remains the primary dependency source; local recipes are overlays, not a replacement channel.
 - If a requested package already exists on `conda-forge` and the user has not given a reason to package it locally anyway, stop and ask for confirmation before adding a local recipe.
 - If packaging changes without an upstream version change, bump the recipe `build.number`.
+- Prefer source builds by default, but allow pragmatic binary repackaging when the upstream project already publishes a suitable Linux artifact and reproducing the full build would be disproportionately complex.
 
 ## Package-Specific Gotchas
 
 - `recipes/chawan/`: the package is intentionally runtime-focused. Keep `cha` plus the required `libexec/chawan` helper tree; omit `mancha` and man pages unless requirements change. Tests should cover runtime files, not just the binary.
 - `recipes/git-credential-gopass/`: avoid tests that execute the helper's normal runtime flow; upstream behavior depends on a configured `gopass` setup. Use install/executable checks instead.
+- `recipes/opencode/`: the current package intentionally repackages the upstream `linux-x64-baseline` CLI binary instead of building the Bun monorepo from source. Keep `build.binary_relocation: false`; conda-added ELF relocation caused the binary to segfault. Keep tests to non-network CLI paths like `--version`, `--help`, and `completion`.
 - `recipes/screen/`: the package intentionally skips upstream doc installation and does not ship `man` or `info` docs. It also avoids packaging setuid install bits; keep validation focused on non-setuid runtime behavior.
 - `recipes/tuxedo/`: keep recipe tests on the one-shot CLI path such as `--version`, `--help`, `add`, and `ls`. Do not try to automate the interactive TUI in `test.commands`; use a manual smoke test after install if needed.
