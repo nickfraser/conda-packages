@@ -16,6 +16,7 @@ Examples:
 
 - `recipes/ctop/`
 - `recipes/git-credential-gopass/`
+- `recipes/herdr/`
 - `recipes/opencode/`
 - `recipes/screen/`
 - `recipes/tuxedo/`
@@ -55,6 +56,7 @@ Examples:
 ```bash
 conda-build -c conda-forge recipes/ctop
 conda-build -c conda-forge recipes/git-credential-gopass
+conda-build -c conda-forge recipes/herdr
 conda-build -c conda-forge recipes/opencode
 conda-build -c conda-forge recipes/screen
 conda-build -c conda-forge recipes/tuxedo
@@ -116,6 +118,7 @@ After installation, run a quick smoke test for the package you built when approp
 
 - `ctop`: Top-like interface for container metrics
 - `git-credential-gopass`: Git credential helper backed by `gopass`
+- `herdr`: Terminal workspace manager for AI coding agents; current recipe builds from source with Rust and Zig
 - `opencode`: Open source AI coding agent; current package repackages the upstream `linux-x64-baseline` CLI binary for broader CPU compatibility on `linux-64`
 - `chawan`: Text-mode web browser; current package includes `cha` and the required runtime helper tree, but omits `mancha` and man pages for now
 - `screen`: GNU Screen terminal multiplexer; current package installs the runtime binary and encoding data, but omits man and info docs
@@ -125,6 +128,7 @@ After installation, run a quick smoke test for the package you built when approp
 
 - `conda-forge` should remain the primary dependency source.
 - These recipes are intended to be small and pragmatic.
+- `herdr` currently builds from source, but the recipe does not yet vendor Cargo crates or the Zig dependency cache used by `libghostty-vt`, so network access is still required during build.
 - `opencode` is a deliberate exception to the usual source-build preference here: the current recipe repackages the upstream CLI binary, with conda binary relocation disabled to preserve the original ELF behavior.
 - Runtime integration for some packages may still depend on tools outside conda. For example, `git-credential-gopass` still requires a working `gopass` setup.
 - `screen` currently builds and passes detached-session smoke tests without packaging setuid installation bits.
