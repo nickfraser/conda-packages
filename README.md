@@ -49,6 +49,14 @@ Build a recipe from the repository root with:
 conda-build -c conda-forge recipes/<package>
 ```
 
+An optional helper script creates a dedicated per-recipe build environment and writes
+successful artifacts under `build/`:
+
+```bash
+./utils/build-recipe.sh herdr
+./utils/build-recipe.sh herdr --delete-env
+```
+
 Pass `-c conda-forge` explicitly when building. Some recipes need build dependencies such as `go`, and `conda-build` does not always inherit the channel configuration you used when creating the `cb` environment.
 
 Examples:
