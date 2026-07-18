@@ -10,12 +10,14 @@ source:
   sha256: 2dae36f4db379ffcd14b691596ba6ec18ac3a9e22bc47ac239789ab58409869d
 
 build:
-  number: 1
+  number: 12
 
 requirements:
   build:
     - {{ compiler('c') }}
+    - gawk
     - make
+    - perl >=5.32
   host:
     - libxcrypt
     - ncurses
