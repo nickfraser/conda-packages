@@ -1,0 +1,35 @@
+{% set name = "pi" %}
+{% set version = "0.80.2" %}
+
+package:
+  name: {{ name|lower }}
+  version: {{ version }}
+
+source:
+  - url: https://github.com/earendil-works/pi/releases/download/v{{ version }}/pi-linux-x64.tar.gz
+    sha256: 2e68772bbeaacd73488751098193875389636b80589100609a29921ded71c984
+  - url: https://raw.githubusercontent.com/earendil-works/pi/v{{ version }}/LICENSE
+    sha256: 0457f5bcec3b3b211605dfb5d1a49042fd638f3686a410fe099c24a25af13c48
+    fn: LICENSE
+
+build:
+  number: 0
+  binary_relocation: false
+
+test:
+  commands:
+    - test -x ${PREFIX}/bin/pi
+    - test -x ${PREFIX}/share/pi/pi
+    - test -f ${PREFIX}/share/pi/package.json
+    - test -f ${PREFIX}/share/pi/photon_rs_bg.wasm
+    - test -f ${PREFIX}/share/pi/node_modules/@mariozechner/clipboard-linux-x64-gnu/clipboard.linux-x64-gnu.node
+    - mkdir -p home
+    - HOME="${PWD}/home" PI_OFFLINE=1 pi --version
+    - HOME="${PWD}/home" PI_OFFLINE=1 pi --help
+
+about:
+  home: https://pi.dev
+  summary: Minimal terminal coding harness
+  license: MIT
+  license_file: LICENSE
+  dev_url: https://github.com/earendil-works/pi/tree/main/packages/coding-agent
