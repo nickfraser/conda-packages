@@ -63,6 +63,7 @@ Examples:
 
 ```bash
 conda-build -c conda-forge recipes/ctop
+conda-build -c conda-forge recipes/disktui
 conda-build -c conda-forge recipes/git-credential-gopass
 conda-build -c conda-forge recipes/herdr
 conda-build -c conda-forge recipes/opencode
@@ -125,6 +126,7 @@ After installation, run a quick smoke test for the package you built when approp
 ## Current Packages
 
 - `ctop`: Top-like interface for container metrics
+- `disktui`: Terminal-based disk management utility
 - `git-credential-gopass`: Git credential helper backed by `gopass`
 - `herdr`: Terminal workspace manager for AI coding agents; current recipe builds from source with Rust and Zig
 - `opencode`: Open source AI coding agent; current package repackages the upstream `linux-x64-baseline` CLI binary for broader CPU compatibility on `linux-64`
