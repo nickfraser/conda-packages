@@ -87,6 +87,7 @@ build_cmd=(
   conda-build
   --override-channels
   -c conda-forge
+  -m "${REPO_ROOT}/conda_build_config.yaml"
   --output-folder "${OUTPUT_DIR}"
 )
 

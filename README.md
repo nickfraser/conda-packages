@@ -46,11 +46,11 @@ All build and installation commands below assume this build environment is activ
 Build a recipe from the repository root with:
 
 ```bash
-conda-build -c conda-forge recipes/<package>
+conda-build -c conda-forge -m conda_build_config.yaml recipes/<package>
 ```
 
 An optional helper script creates a dedicated per-recipe build environment and writes
-successful artifacts under `build/`:
+successful artifacts under `build/`. It applies the repository's build configuration automatically:
 
 ```bash
 ./utils/build-recipe.sh herdr
@@ -62,19 +62,19 @@ Pass `-c conda-forge` explicitly when building. Some recipes need build dependen
 Examples:
 
 ```bash
-conda-build -c conda-forge recipes/ctop
-conda-build -c conda-forge recipes/disktui
-conda-build -c conda-forge recipes/git-credential-gopass
-conda-build -c conda-forge recipes/herdr
-conda-build -c conda-forge recipes/opencode
-conda-build -c conda-forge recipes/screen
-conda-build -c conda-forge recipes/tuxedo
+conda-build -c conda-forge -m conda_build_config.yaml recipes/ctop
+conda-build -c conda-forge -m conda_build_config.yaml recipes/disktui
+conda-build -c conda-forge -m conda_build_config.yaml recipes/git-credential-gopass
+conda-build -c conda-forge -m conda_build_config.yaml recipes/herdr
+conda-build -c conda-forge -m conda_build_config.yaml recipes/opencode
+conda-build -c conda-forge -m conda_build_config.yaml recipes/screen
+conda-build -c conda-forge -m conda_build_config.yaml recipes/tuxedo
 ```
 
 If a recipe ever needs to consume another package you already built locally, add `--use-local`:
 
 ```bash
-conda-build --use-local -c conda-forge recipes/<package>
+conda-build --use-local -c conda-forge -m conda_build_config.yaml recipes/<package>
 ```
 
 `conda-build` writes the resulting package to your local build cache, typically under a path like:
@@ -143,6 +143,7 @@ After installation, run a quick smoke test for the package you built when approp
 - Runtime integration for some packages may still depend on tools outside conda. For example, `git-credential-gopass` still requires a working `gopass` setup.
 - `screen` currently builds and passes detached-session smoke tests without packaging setuid installation bits.
 - `screen` intentionally skips upstream doc installation, so `man screen` and `info screen` are not provided by this package.
+- Native Linux builds target conda-forge's GLIBC 2.17 baseline through `conda_build_config.yaml` and `{{ stdlib('c') }}`. Repackaged binaries declare their inspected minimum GLIBC version explicitly. Verify both the package metadata and ELF symbol versions after a build.
 
 ## Future Work
 

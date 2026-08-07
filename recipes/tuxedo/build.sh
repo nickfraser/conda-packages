@@ -3,4 +3,4 @@ set -euxo pipefail
 
 cargo build --release --locked
 
-install -Dm755 target/release/tuxedo "${PREFIX}/bin/tuxedo"
+install -Dm755 "target/${CARGO_BUILD_TARGET}/release/tuxedo" "${PREFIX}/bin/tuxedo"

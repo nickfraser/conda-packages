@@ -10,10 +10,11 @@ source:
   sha256: cf09e0205f8db28cc916c44f2ac1def6392efc9d66f3c88dc9aae413079ebb2c
 
 build:
-  number: 0
+  number: 1
 
 requirements:
   build:
+    - {{ stdlib('c') }}
     - {{ compiler('c') }}
     - make
     - nim >=2.0.0
