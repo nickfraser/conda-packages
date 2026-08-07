@@ -10,13 +10,13 @@ source:
   sha256: e5c03b7948c7a968ef15bec48fb02a0ce13ac5dbf9ea263ce30a6abdc579a81f
 
 build:
-  number: 1
+  number: 2
 
 requirements:
   build:
     - {{ compiler('c') }}
     - rust >=1.85
-    - sysroot_linux-64 2.34
+    - sysroot_linux-64 2.28
 
 test:
   commands:
