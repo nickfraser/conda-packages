@@ -10,15 +10,16 @@ source:
   sha256: 0a9b4ba7fe5cccec0abddd3b0ff140ccbb722a3f9a09a6a0c22e35dea4c8ba06
 
 build:
-  number: 0
+  number: 1
   ignore_run_exports:
     - libstdcxx
 
 requirements:
   build:
+    - {{ stdlib('c') }}
     - {{ compiler('c') }}
     - {{ compiler('cxx') }}
-    - rust
+    - {{ compiler('rust') }}
     - zig >=0.15.2,<0.16
 
 test:

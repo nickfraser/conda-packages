@@ -13,8 +13,12 @@ source:
     fn: LICENSE
 
 build:
-  number: 0
+  number: 2
   binary_relocation: false
+
+requirements:
+  run_constrained:
+    - __glibc >=2.17
 
 test:
   commands:

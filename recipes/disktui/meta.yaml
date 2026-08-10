@@ -10,12 +10,13 @@ source:
   sha256: 671b757199e3a3f62a2a2a597a77ea05a7c2f1d2fb7609f0e9b530a69ea633fe
 
 build:
-  number: 0
+  number: 1
 
 requirements:
   build:
+    - {{ stdlib('c') }}
     - {{ compiler('c') }}
-    - rust >=1.85
+    - {{ compiler('rust') }}
 
 test:
   commands:
