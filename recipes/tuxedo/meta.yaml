@@ -1,5 +1,5 @@
 {% set name = "tuxedo" %}
-{% set version = "2026.6.2" %}
+{% set version = "2026.7.1" %}
 
 package:
   name: {{ name|lower }}
@@ -7,10 +7,10 @@ package:
 
 source:
   url: https://github.com/webstonehq/tuxedo/archive/refs/tags/v{{ version }}.tar.gz
-  sha256: e5c03b7948c7a968ef15bec48fb02a0ce13ac5dbf9ea263ce30a6abdc579a81f
+  sha256: 259d46840f29141a363248e4e07701265ee75b438e4a7709a96a689da3682934
 
 build:
-  number: 3
+  number: 0
 
 requirements:
   build:
