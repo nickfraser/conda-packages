@@ -17,7 +17,6 @@ Examples:
 - `recipes/ctop/`
 - `recipes/git-credential-gopass/`
 - `recipes/herdr/`
-- `recipes/opencode/`
 - `recipes/screen/`
 - `recipes/tuxedo/`
 
@@ -66,7 +65,6 @@ conda-build -c conda-forge -m conda_build_config.yaml recipes/ctop
 conda-build -c conda-forge -m conda_build_config.yaml recipes/disktui
 conda-build -c conda-forge -m conda_build_config.yaml recipes/git-credential-gopass
 conda-build -c conda-forge -m conda_build_config.yaml recipes/herdr
-conda-build -c conda-forge -m conda_build_config.yaml recipes/opencode
 conda-build -c conda-forge -m conda_build_config.yaml recipes/screen
 conda-build -c conda-forge -m conda_build_config.yaml recipes/tuxedo
 ```
@@ -129,7 +127,6 @@ After installation, run a quick smoke test for the package you built when approp
 - `disktui`: Terminal-based disk management utility
 - `git-credential-gopass`: Git credential helper backed by `gopass`
 - `herdr`: Terminal workspace manager for AI coding agents; current recipe builds from source with Rust and Zig
-- `opencode`: Open source AI coding agent; current package repackages the upstream `linux-x64-baseline` CLI binary for broader CPU compatibility on `linux-64`
 - `chawan`: Text-mode web browser; current package includes `cha` and the required runtime helper tree, but omits `mancha` and man pages for now
 - `screen`: GNU Screen terminal multiplexer; current package installs the runtime binary and encoding data, but omits man and info docs
 - `tuxedo`: Fast, keyboard-driven terminal UI for `todo.txt`
@@ -139,7 +136,6 @@ After installation, run a quick smoke test for the package you built when approp
 - `conda-forge` should remain the primary dependency source.
 - These recipes are intended to be small and pragmatic.
 - `herdr` currently builds from source, but the recipe does not yet vendor Cargo crates or the Zig dependency cache used by `libghostty-vt`, so network access is still required during build.
-- `opencode` is a deliberate exception to the usual source-build preference here: the current recipe repackages the upstream CLI binary, with conda binary relocation disabled to preserve the original ELF behavior.
 - Runtime integration for some packages may still depend on tools outside conda. For example, `git-credential-gopass` still requires a working `gopass` setup.
 - `screen` currently builds and passes detached-session smoke tests without packaging setuid installation bits.
 - `screen` intentionally skips upstream doc installation, so `man screen` and `info screen` are not provided by this package.
