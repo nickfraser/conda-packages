@@ -1,5 +1,5 @@
 {% set name = "git-credential-gopass" %}
-{% set version = "1.16.1" %}
+{% set version = "1.17.2" %}
 
 package:
   name: {{ name|lower }}
@@ -7,14 +7,14 @@ package:
 
 source:
   url: https://github.com/gopasspw/git-credential-gopass/archive/refs/tags/v{{ version }}.tar.gz
-  sha256: 8382b98e56b4547232cc5ea8967eb2a7497a9821a50499d215dafc2f530ba32e
+  sha256: d73a0d7f9a062a2297b31f7aa2ba48447614fe194716d1034532ab9a6acacc06
 
 build:
   number: 0
 
 requirements:
   build:
-    - go >=1.24.1
+    - go >=1.25.0
 
 test:
   commands:
