@@ -1,5 +1,5 @@
 {% set name = "screen" %}
-{% set version = "5.0.1" %}
+{% set version = "5.0.2" %}
 
 package:
   name: {{ name|lower }}
@@ -7,10 +7,10 @@ package:
 
 source:
   url: https://ftp.gnu.org/gnu/screen/screen-{{ version }}.tar.gz
-  sha256: 2dae36f4db379ffcd14b691596ba6ec18ac3a9e22bc47ac239789ab58409869d
+  sha256: ca9a2c7e240919bc7ac12124593ae4529bb4eb5f7349d8857829b7e3f0b3b332
 
 build:
-  number: 13
+  number: 0
 
 requirements:
   build:
@@ -25,7 +25,7 @@ requirements:
 
 test:
   commands:
-    - screen -v | grep 'Screen version 5.0.1'
+    - screen -v | grep 'Screen version 5.0.2'
     - test -d ${PREFIX}/share/screen/utf8encodings
 
 about:
