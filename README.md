@@ -71,6 +71,20 @@ conda-build -c conda-forge -m conda_build_config.yaml recipes/tuxedo
 conda-build -c conda-forge -m conda_build_config.yaml recipes/tuxedo-hooks
 ```
 
+The `tuxedo-hooks` tests read the user's configuration from
+`${XDG_CONFIG_HOME:-$HOME/.config}/tuxedo-hooks/config.toml`. If that configuration
+contains hooks that depend on local tools, isolate it during builds:
+
+```bash
+mkdir -p "$PWD/test-home"
+XDG_CONFIG_HOME="$PWD/test-home" \
+  ./utils/build-recipe.sh tuxedo-hooks 2>&1 | tee tuxedo-hooks.log
+```
+
+Use an exported or inline environment variable as shown above; assigning
+`XDG_CONFIG_HOME=./test-home` without exporting it will not pass the setting to
+the build process.
+
 If a recipe ever needs to consume another package you already built locally, add `--use-local`:
 
 ```bash
