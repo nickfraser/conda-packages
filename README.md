@@ -19,6 +19,7 @@ Examples:
 - `recipes/herdr/`
 - `recipes/screen/`
 - `recipes/tuxedo/`
+- `recipes/tuxedo-hooks/`
 
 Typical files:
 
@@ -67,6 +68,7 @@ conda-build -c conda-forge -m conda_build_config.yaml recipes/git-credential-gop
 conda-build -c conda-forge -m conda_build_config.yaml recipes/herdr
 conda-build -c conda-forge -m conda_build_config.yaml recipes/screen
 conda-build -c conda-forge -m conda_build_config.yaml recipes/tuxedo
+conda-build -c conda-forge -m conda_build_config.yaml recipes/tuxedo-hooks
 ```
 
 If a recipe ever needs to consume another package you already built locally, add `--use-local`:
@@ -130,6 +132,7 @@ After installation, run a quick smoke test for the package you built when approp
 - `chawan`: Text-mode web browser; current package includes `cha` and the required runtime helper tree, but omits `mancha` and man pages for now
 - `screen`: GNU Screen terminal multiplexer; current package installs the runtime binary and encoding data, but omits man and info docs
 - `tuxedo`: Fast, keyboard-driven terminal UI for `todo.txt`
+- `tuxedo-hooks`: Keyboard-driven terminal UI and CLI for `todo.txt` with post-mutation hooks
 
 ## Notes
 

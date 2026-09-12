@@ -43,3 +43,4 @@ conda create -n test-env \
 - `recipes/git-credential-gopass/`: avoid tests that execute the helper's normal runtime flow; upstream behavior depends on a configured `gopass` setup. Use install/executable checks instead.
 - `recipes/screen/`: the package intentionally skips upstream doc installation and does not ship `man` or `info` docs. It also avoids packaging setuid install bits; keep validation focused on non-setuid runtime behavior.
 - `recipes/tuxedo/`: keep recipe tests on the one-shot CLI path such as `--version`, `--help`, `add`, and `ls`. Do not try to automate the interactive TUI in `test.commands`; use a manual smoke test after install if needed.
+- `recipes/tuxedo-hooks/`: keep recipe tests on the one-shot CLI path such as `--version`, `--help`, `add`, and `ls`. Do not try to automate the interactive TUI in `test.commands`; use a manual smoke test after install if needed.

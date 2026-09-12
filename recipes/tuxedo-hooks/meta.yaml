@@ -1,0 +1,35 @@
+{% set name = "tuxedo-hooks" %}
+{% set version = "2026.9.1" %}
+
+package:
+  name: {{ name|lower }}
+  version: {{ version }}
+
+source:
+  url: https://github.com/nickfraser/tuxedo-hooks/archive/refs/tags/v{{ version }}.tar.gz
+  sha256: 2378decc74e7ab028bf353a99ec73f7b7744cd25964a4c041b503bcd23152ae2
+
+build:
+  number: 0
+
+requirements:
+  build:
+    - {{ stdlib('c') }}
+    - {{ compiler('c') }}
+    - {{ compiler('rust') }}
+
+test:
+  commands:
+    - test -x ${PREFIX}/bin/tuxedo-hooks
+    - TUXEDO_HOOKS_NO_UPDATE_CHECK=1 tuxedo-hooks --version
+    - TUXEDO_HOOKS_NO_UPDATE_CHECK=1 tuxedo-hooks --help
+    - rm -f tuxedo-hooks-test.txt
+    - TUXEDO_HOOKS_NO_UPDATE_CHECK=1 TODO_FILE="${PWD}/tuxedo-hooks-test.txt" tuxedo-hooks add "Buy milk +home @errands"
+    - TUXEDO_HOOKS_NO_UPDATE_CHECK=1 TODO_FILE="${PWD}/tuxedo-hooks-test.txt" tuxedo-hooks ls | grep "Buy milk"
+
+about:
+  home: https://github.com/nickfraser/tuxedo-hooks
+  summary: Keyboard-driven terminal UI and CLI for todo.txt with post-mutation hooks
+  license: MIT
+  license_file: LICENSE
+  dev_url: https://github.com/nickfraser/tuxedo-hooks
